@@ -1,4 +1,10 @@
 <?php 
+// PASTIKAN ADA SESSION START DI PALING ATAS
+session_start();
+if($_SESSION['status'] != "login"){
+    header("location:login.php");
+}
+
 include '../koneksi.php'; 
 
 // --- LOGIKA FILTER & PENCARIAN ---
@@ -36,7 +42,6 @@ $summary = mysqli_fetch_assoc($query_sum);
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* CSS Tambahan Khusus Halaman Ini */
         .filter-card {
             background: #fff;
             border-radius: 15px;
@@ -47,7 +52,7 @@ $summary = mysqli_fetch_assoc($query_sum);
         .table-card {
             background: #fff;
             border-radius: 15px;
-            overflow: hidden; /* Agar sudut tabel tumpul */
+            overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.03);
             border: none;
         }
@@ -143,9 +148,28 @@ $summary = mysqli_fetch_assoc($query_sum);
                 </div>
 
                 <div class="col-md-5 text-md-end">
-                    <button type="submit" class="btn btn-warning text-white fw-bold px-4"><i class="fas fa-filter me-2"></i> Terapkan</button>
-                    <a href="data-donasi.php" class="btn btn-light border ms-2"><i class="fas fa-sync-alt text-muted"></i> Reset</a>
-                </div>
+                    <button type="submit" class="btn btn-warning text-white fw-bold"><i class="fas fa-filter me-1"></i> Filter</button>
+                    <a href="data-donasi.php" class="btn btn-light border ms-1"><i class="fas fa-sync-alt text-muted"></i></a>
+                    
+                    <div class="btn-group ms-2">
+                        <button type="button" class="btn btn-success dropdown-toggle fw-bold" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-download me-1"></i> Export
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                            <li>
+                                <a class="dropdown-item py-2" href="export-excel.php?bank=<?php echo $filter_bank; ?>&q=<?php echo $search_q; ?>" target="_blank">
+                                    <i class="fas fa-file-excel text-success me-2"></i> Ke Excel (.xls)
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item py-2" href="cetak-laporan.php?bank=<?php echo $filter_bank; ?>&q=<?php echo $search_q; ?>" target="_blank">
+                                    <i class="fas fa-file-pdf text-danger me-2"></i> Ke PDF / Cetak
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                
             </form>
         </div>
 
@@ -170,7 +194,6 @@ $summary = mysqli_fetch_assoc($query_sum);
                         $no = 1;
                         if(mysqli_num_rows($data) > 0){
                             while($row = mysqli_fetch_assoc($data)) { 
-                                // Inisial Nama untuk Avatar
                                 $inisial = strtoupper(substr($row['nama_donatur'], 0, 1));
                         ?>
                         <tr>
@@ -218,6 +241,7 @@ $summary = mysqli_fetch_assoc($query_sum);
                     </tbody>
                 </table>
             </div>
+            
             <div class="card-footer bg-white py-3 border-0 d-flex justify-content-between align-items-center">
                 <small class="text-muted">Menampilkan data terbaru</small>
                 <nav>

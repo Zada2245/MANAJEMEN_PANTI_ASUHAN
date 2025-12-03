@@ -1,4 +1,8 @@
-<?php include 'header.php'; ?>
+<?php 
+include 'header.php'; 
+// Koneksi manual jika header.php belum ada koneksi, atau include 'koneksi.php';
+$koneksi = mysqli_connect("localhost", "root", "", "db_panti");
+?>
 
 <div class="page-header">
     <div class="container">
@@ -11,32 +15,37 @@
     <div class="container">
         
         <div class="mb-5 position-relative">
-            <div style="height: 500px; background-color: #444;" class="rounded shadow w-100 d-flex align-items-center justify-content-center text-white display-1">
-                <i class="fas fa-play-circle"></i>
+            <div style="height: 400px; background: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;" class="rounded shadow w-100 d-flex align-items-center justify-content-center text-white">
+                <i class="fas fa-play-circle display-1" style="opacity: 0.8; cursor: pointer;"></i>
             </div>
-            <p class="text-center mt-2 text-muted fst-italic">Dokumentasi kegiatan lapangan kami</p>
+            <p class="text-center mt-3 text-muted fst-italic">Dokumentasi kegiatan lapangan kami bersama relawan.</p>
         </div>
 
-        <div class="row g-3">
-            <?php for($k=1; $k<=6; $k++) { ?>
+        <div class="row g-4">
+            <?php 
+            $query_galeri = mysqli_query($koneksi, "SELECT * FROM galeri ORDER BY id DESC");
+            if(mysqli_num_rows($query_galeri) > 0) {
+                while($foto = mysqli_fetch_assoc($query_galeri)) { 
+            ?>
             <div class="col-md-4 col-sm-6">
-                <div style="height: 300px; background-color: #eee;" class="rounded border d-flex align-items-center justify-content-center text-muted">
-                    [GALERI <?php echo $k; ?>]
+                <div class="card border-0 shadow-sm h-100">
+                    <div style="height: 250px; overflow: hidden;" class="rounded-top">
+                        <img src="<?php echo $foto['link_gambar']; ?>" class="w-100 h-100" style="object-fit: cover; transition: 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" alt="Galeri">
+                    </div>
+                    <div class="card-body text-center">
+                        <h6 class="fw-bold mb-0"><?php echo $foto['judul']; ?></h6>
+                        <small class="text-muted"><?php echo date('d M Y', strtotime($foto['tanggal'])); ?></small>
+                    </div>
                 </div>
             </div>
-            <?php } ?>
+            <?php 
+                } 
+            } else {
+                echo "<p class='text-center text-muted'>Belum ada foto di galeri.</p>";
+            }
+            ?>
         </div>
 
-        <div class="d-flex justify-content-center mt-5">
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <li class="page-item active"><a class="page-link bg-warning border-warning" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">Next</a></li>
-                </ul>
-            </nav>
-        </div>
     </div>
 </section>
 

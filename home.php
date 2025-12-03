@@ -97,51 +97,31 @@
     <div class="container">
         <div class="text-center mb-5 section-title">
             <h2>Berita & Kegiatan Panti</h2>
-            <p class="text-muted">Kabar terbaru mengenai aktivitas anak-anak dan penyaluran bantuan.</p>
+            <p class="text-muted">Kabar terbaru langsung dari database.</p>
         </div>
 
         <div class="row">
+            <?php
+            $koneksi = mysqli_connect("localhost", "root", "", "db_panti");
+            
+            $query_berita = mysqli_query($koneksi, "SELECT * FROM berita ORDER BY id DESC LIMIT 3");
+            
+            while($b = mysqli_fetch_assoc($query_berita)){
+            ?>
             <div class="col-md-4 mb-4">
                 <div class="card border-0 shadow-sm h-100">
-                    <img src="https://loremflickr.com/600/400/group,people" class="card-img-top" height="250" style="object-fit:cover;">
+                    <img src="<?php echo $b['gambar']; ?>" class="card-img-top" height="250" style="object-fit:cover;">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-2 text-muted small">
-                            <i class="fas fa-calendar-alt me-2 text-warning"></i> 12 Desember 2024
+                            <i class="fas fa-calendar-alt me-2 text-warning"></i> <?php echo $b['tanggal']; ?>
                         </div>
-                        <h5 class="fw-bold"><a href="#" class="text-dark text-decoration-none">Kunjungan Donatur Akhir Tahun</a></h5>
-                        <p class="text-muted small mt-2">Terima kasih kepada komunitas motor yang telah berkunjung dan berbagi keceriaan bersama adik-adik panti.</p>
-                        <a href="#" class="text-warning fw-bold small text-decoration-none">BACA SELENGKAPNYA <i class="fas fa-arrow-right ms-1"></i></a>
+                        <h5 class="fw-bold"><a href="#" class="text-dark text-decoration-none"><?php echo $b['judul']; ?></a></h5>
+                        <p class="text-muted small mt-2"><?php echo substr($b['isi'], 0, 100); ?>...</p>
+                        <a href="#" class="text-warning fw-bold small text-decoration-none">BACA SELENGKAPNYA</a>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <img src="https://loremflickr.com/600/400/study,class" class="card-img-top" height="250" style="object-fit:cover;">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2 text-muted small">
-                            <i class="fas fa-calendar-alt me-2 text-warning"></i> 05 Desember 2024
-                        </div>
-                        <h5 class="fw-bold"><a href="#" class="text-dark text-decoration-none">Kelas Belajar Bahasa Inggris</a></h5>
-                        <p class="text-muted small mt-2">Kegiatan rutin setiap minggu sore, anak-anak belajar bahasa Inggris bersama kakak relawan mahasiswa.</p>
-                        <a href="#" class="text-warning fw-bold small text-decoration-none">BACA SELENGKAPNYA <i class="fas fa-arrow-right ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <img src="https://loremflickr.com/600/400/box,donation" class="card-img-top" height="250" style="object-fit:cover;">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2 text-muted small">
-                            <i class="fas fa-calendar-alt me-2 text-warning"></i> 28 November 2024
-                        </div>
-                        <h5 class="fw-bold"><a href="#" class="text-dark text-decoration-none">Penyaluran Sembako Tahap 2</a></h5>
-                        <p class="text-muted small mt-2">Alhamdulillah, bantuan sembako dari para donatur telah kami terima dan simpan di gudang logistik.</p>
-                        <a href="#" class="text-warning fw-bold small text-decoration-none">BACA SELENGKAPNYA <i class="fas fa-arrow-right ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </section>

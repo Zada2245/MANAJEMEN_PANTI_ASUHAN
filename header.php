@@ -31,7 +31,7 @@
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="causes.php">Our Causes</a></li>
+                <li class="nav-item"><a class="nav-link" href="causes.php">Volunteer</a></li>
                 <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
                 <li class="nav-item ms-3">
                     <a href="donation.php" class="btn btn-custom">Donate</a>

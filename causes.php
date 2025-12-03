@@ -1,115 +1,157 @@
-<?php include 'header.php'; ?>
+<?php 
+include 'header.php'; 
+
+// 1. KONEKSI DATABASE
+$koneksi = mysqli_connect("localhost", "root", "", "db_panti");
+
+// 2. HITUNG JUMLAH RELAWAN SAAT INI
+$query_hitung = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM relawan");
+$data_hitung  = mysqli_fetch_assoc($query_hitung);
+$jumlah_saat_ini = $data_hitung['total'];
+$batas_kuota     = 20;
+
+// Cek apakah penuh?
+$is_penuh = ($jumlah_saat_ini >= $batas_kuota);
+
+// 3. LOGIKA PENDAFTARAN
+if(isset($_POST['daftar_relawan'])){
+    // Cek ulang kuota (untuk mencegah race condition)
+    $cek_lagi = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) as total FROM relawan"));
+    
+    if($cek_lagi['total'] >= $batas_kuota){
+        // JIKA PENUH (Tolak)
+        echo "<script>
+            alert('MOHON MAAF! Pendaftaran baru saja ditutup karena kuota sudah terpenuhi (20 orang).');
+            window.location='causes.php';
+        </script>";
+    } else {
+        // JIKA MASIH ADA SLOT (Simpan)
+        $nama   = $_POST['nama'];
+        $email  = $_POST['email'];
+        $hp     = $_POST['hp'];
+        $peran  = $_POST['peran'];
+        $tgl    = date('Y-m-d');
+        $status = 'Pending'; // Default status menunggu persetujuan admin
+
+        $simpan = mysqli_query($koneksi, "INSERT INTO relawan (nama_lengkap, email, no_hp, peran, tanggal_daftar, status) VALUES ('$nama', '$email', '$hp', '$peran', '$tgl', '$status')");
+
+        if($simpan){
+            echo "<script>
+                alert('Selamat! Pendaftaran Anda berhasil dikirim. Tunggu konfirmasi dari Admin.');
+                window.location='causes.php';
+            </script>";
+        }
+    }
+}
+?>
 
 <div class="page-header">
     <div class="container">
-        <h1 class="fw-bold">Detail Kebutuhan Panti</h1>
-        <p class="mb-0 text-white-50">Home / Causes / <span class="text-warning">Kebutuhan Panti</span></p>
+        <h1 class="fw-bold">Gabung Relawan</h1>
+        <p class="mb-0 text-white-50">Home / <span class="text-warning">Volunteer</span></p>
     </div>
 </div>
 
 <section class="py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <img src="https://loremflickr.com/800/400/orphanage,children" class="img-fluid rounded mb-4 w-100" alt="Kondisi Panti">
+        <div class="row align-items-center">
+            
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="https://loremflickr.com/600/400/teamwork,volunteer" class="img-fluid rounded shadow-sm mb-4 w-100" alt="Volunteer">
                 
-                <h2 class="fw-bold">Bantu Kami Bertahan: Stok Sembako Menipis & Atap Bocor</h2>
-                
-                <div class="d-flex justify-content-between my-3 small fw-bold">
-                    <span class="text-warning">Rp 4.500.000 Terkumpul</span>
-                    <span>Target: Rp 15.000.000</span>
-                </div>
-                <div class="progress mb-4" style="height: 10px;">
-                    <div class="progress-bar bg-warning" style="width: 30%"></div>
-                </div>
-
-                <h4 class="fw-bold mt-4">Kondisi Panti Saat Ini</h4>
+                <h2 class="fw-bold mb-3">Jadilah Bagian dari Kebaikan</h2>
                 <p class="text-muted">
-                    Saat ini, Panti Asuhan kami yang menampung 50 anak yatim piatu sedang mengalami masa sulit. 
-                    Persediaan bahan pokok di gudang hanya cukup untuk 3 hari ke depan. Selain itu, karena musim hujan yang terus menerus, 
-                    beberapa atap di kamar tidur anak-anak mengalami kebocoran parah yang menyebabkan kasur mereka basah dan lembab.
-                </p>
-                <p class="text-muted">
-                    Kami berusaha semampu kami, namun biaya operasional bulan ini membengkak karena adanya anak asuh baru yang sakit dan memerlukan biaya pengobatan.
+                    Kami membutuhkan tenaga, pikiran, dan kasih sayang Anda untuk membantu operasional panti. 
+                    Saat ini kami membatasi jumlah relawan aktif demi efektivitas manajemen.
                 </p>
 
-                <div class="bg-white border rounded p-4 my-4 shadow-sm">
-                    <h5 class="fw-bold text-danger border-bottom pb-2"><i class="fas fa-clipboard-list me-2"></i>Daftar Kebutuhan Mendesak</h5>
-                    <p class="small text-muted mb-3">Berikut adalah rincian kebutuhan yang kami perlukan segera:</p>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span><i class="fas fa-utensils text-warning me-2"></i> Sembako (Beras 50kg, Minyak, Telur)</span>
-                            <span class="badge bg-danger rounded-pill">Sangat Mendesak</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span><i class="fas fa-home text-warning me-2"></i> Perbaikan 3 titik atap bocor</span>
-                            <span class="badge bg-danger rounded-pill">Mendesak</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span><i class="fas fa-baby text-warning me-2"></i> Susu Balita & Popok</span>
-                            <span class="badge bg-warning text-dark rounded-pill">Butuh Segera</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span><i class="fas fa-book text-warning me-2"></i> Buku Tulis & Alat Sekolah</span>
-                            <span class="badge bg-info text-dark rounded-pill">Rutin</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="my-4">
-                    <button class="btn btn-light border w-100 py-3 text-start d-flex justify-content-between align-items-center">
-                        <span><i class="fas fa-file-alt text-primary me-2"></i> Rincian_Anggaran_Perbaikan.pdf</span>
-                        <i class="fas fa-download text-muted"></i>
-                    </button>
-                </div>
-
-                <div class="bg-light p-4 rounded border mt-5 border-warning border-2">
-                    <h4 class="fw-bold mb-3 text-center">Salurkan Bantuan Anda</h4>
-                    <p class="text-center text-muted small mb-4">Bantuan Anda, sekecil apapun, sangat berarti untuk senyum mereka.</p>
+                <div class="card border-0 shadow-sm p-3 mt-4 <?php echo $is_penuh ? 'bg-danger text-white' : 'bg-light'; ?>">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-chart-pie me-2"></i> Status Kuota Relawan</h5>
                     
-                    <form action="donation.php" method="GET">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Masukkan Nominal Bantuan</label>
-                            <div class="input-group">
-                                <span class="input-group-text fw-bold bg-white">Rp</span>
-                                <input type="number" name="amount" class="form-control py-3" placeholder="Contoh: 50000" min="10000" required>
-                            </div>
-                            <div class="form-text text-muted">*Masukkan nominal tanpa titik.</div>
-                        </div>
-                        <button type="submit" class="btn btn-custom w-100 py-3 fw-bold shadow">
-                            <i class="fas fa-heart me-2"></i> Donasi Sekarang
-                        </button>
-                    </form>
-                </div>
-                </div>
-
-            <div class="col-lg-4 mt-4 mt-lg-0">
-                <div class="mb-4">
-                    <h5 class="fw-bold border-bottom pb-2 border-warning d-inline-block">Cari Program</h5>
-                    <form class="d-flex mt-3">
-                        <input class="form-control me-2" type="search" placeholder="Cari...">
-                        <button class="btn btn-warning text-white" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
-                </div>
-
-                <div class="mb-4">
-                    <h5 class="fw-bold border-bottom pb-2 border-warning d-inline-block">Kategori Bantuan</h5>
-                    <ul class="list-group list-group-flush mt-3">
-                        <li class="list-group-item d-flex justify-content-between">Pendidikan <span class="badge bg-warning rounded-pill">14</span></li>
-                        <li class="list-group-item d-flex justify-content-between">Kesehatan <span class="badge bg-warning rounded-pill">5</span></li>
-                        <li class="list-group-item d-flex justify-content-between">Pembangunan <span class="badge bg-warning rounded-pill">8</span></li>
-                    </ul>
-                </div>
-                
-                <div class="card bg-warning bg-opacity-10 border-warning">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Program Mendesak Lainnya</h5>
-                        <img src="https://loremflickr.com/300/200/poor,meal" class="img-fluid rounded mb-2">
-                        <h6 class="fw-bold small">Sedekah Makan Jumat</h6>
-                        <a href="donation.php" class="btn btn-sm btn-custom w-100">Bantu Sekarang</a>
+                    <div class="d-flex justify-content-between fw-bold mb-1">
+                        <span>Terisi: <?php echo $jumlah_saat_ini; ?> Orang</span>
+                        <span>Batas: <?php echo $batas_kuota; ?> Orang</span>
                     </div>
+
+                    <div class="progress" style="height: 15px; background: rgba(255,255,255,0.5);">
+                        <?php 
+                            $persen = ($jumlah_saat_ini / $batas_kuota) * 100;
+                            $warna_bar = $is_penuh ? 'bg-white' : 'bg-warning'; 
+                        ?>
+                        <div class="progress-bar <?php echo $warna_bar; ?>" style="width: <?php echo $persen; ?>%"></div>
+                    </div>
+
+                    <small class="mt-2 d-block fst-italic">
+                        <?php 
+                        if($is_penuh){
+                            echo "*Mohon maaf, pendaftaran saat ini DITUTUP sementara.";
+                        } else {
+                            echo "*Masih tersisa " . ($batas_kuota - $jumlah_saat_ini) . " slot lagi. Segera daftar!";
+                        }
+                        ?>
+                    </small>
                 </div>
             </div>
+
+            <div class="col-lg-6 ps-lg-5">
+                <div class="card shadow border-0 p-4">
+                    
+                    <?php if($is_penuh): ?>
+                        <div class="text-center py-5">
+                            <i class="fas fa-user-slash text-danger" style="font-size: 4rem;"></i>
+                            <h3 class="fw-bold mt-3 text-danger">Pendaftaran Ditutup</h3>
+                            <p class="text-muted">Kuota relawan telah mencapai batas maksimal (20 orang).<br>Silakan cek kembali di periode berikutnya.</p>
+                            <button class="btn btn-secondary w-100 py-3 mt-2" disabled>Formulir Tidak Tersedia</button>
+                        </div>
+
+                    <?php else: ?>
+                        <div class="border-bottom pb-3 mb-3">
+                            <h3 class="fw-bold">Formulir Pendaftaran</h3>
+                            <p class="text-muted small mb-0">Isi data diri Anda dengan benar.</p>
+                        </div>
+
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold small text-muted">Nama Lengkap</label>
+                                <input type="text" name="nama" class="form-control bg-light py-2" required>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold small text-muted">Email</label>
+                                    <input type="email" name="email" class="form-control bg-light py-2" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold small text-muted">No. WhatsApp</label>
+                                    <input type="number" name="hp" class="form-control bg-light py-2" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold small text-muted">Pilih Peran Relawan</label>
+                                <select name="peran" class="form-select bg-light py-2" required>
+                                    <option value="">-- Pilih Minat Anda --</option>
+                                    <option value="Pengajar">Pengajar (Guru Les/Mengaji)</option>
+                                    <option value="Logistik">Tim Logistik & Dapur</option>
+                                    <option value="Medis">Tim Kesehatan/Medis</option>
+                                    <option value="Acara">Tim Acara & Hiburan</option>
+                                </select>
+                            </div>
+
+                            <div class="alert alert-warning small d-flex align-items-center">
+                                <i class="fas fa-info-circle me-2 fs-5"></i>
+                                <div>Dengan mendaftar, Anda bersedia mengikuti aturan panti dan menunggu seleksi Admin.</div>
+                            </div>
+
+                            <button type="submit" name="daftar_relawan" class="btn btn-custom w-100 py-3 fw-bold shadow">
+                                <i class="fas fa-paper-plane me-2"></i> Kirim Pendaftaran
+                            </button>
+                        </form>
+                    <?php endif; ?>
+
+                </div>
+            </div>
+
         </div>
     </div>
 </section>

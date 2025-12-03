@@ -31,74 +31,114 @@
 <section class="py-5">
     <div class="container">
         <div class="text-center mb-5 section-title">
-            <h2>Recent Causes</h2>
-            <p class="text-muted">Proyek terbaru kami yang membutuhkan uluran tangan Anda.</p>
+            <h2>Kebutuhan Mendesak</h2>
+            <p class="text-muted">Bantuan Anda sangat dibutuhkan untuk program-program berikut.</p>
         </div>
         
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm h-100">
                     <img src="https://loremflickr.com/600/400/school,children" class="card-img-top" height="250">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Education Needs</h5>
-                        <p class="small text-muted">Bantuan pendidikan untuk anak kurang mampu.</p>
-                        <div class="progress mb-3" style="height: 6px;">
-                            <div class="progress-bar bg-warning" style="width: 70%"></div>
-                        </div>
-                        <div class="d-flex justify-content-between small fw-bold">
-                            <span>Raised: $7,000</span>
-                            <span class="text-warning">Goal: $10,000</span>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="fw-bold">Bantuan Pendidikan Yatim</h5>
+                        <p class="small text-muted mb-4">Bantuan biaya sekolah dan peralatan belajar anak yatim.</p>
+                        
+                        <div class="mt-auto d-flex justify-content-between small fw-bold border-top pt-3">
+                            <span>Terkumpul: Rp 12.500.000</span>
+                            <span class="text-warning">Rp 50.000.000</span>
                         </div>
                     </div>
-                    <div class="card-footer bg-white border-top-0">
-                        <div class="row gx-2">
-                            <div class="col-6"><a href="donation.php" class="btn btn-outline-warning w-100 btn-sm">Donate</a></div>
-                            <div class="col-6"><a href="causes.php" class="btn btn-light w-100 btn-sm border">Read More</a></div>
-                        </div>
+                    <div class="card-footer bg-white border-top-0 pb-4">
+                        <a href="causes.php" class="btn btn-outline-warning w-100">Donasi Sekarang</a>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm h-100">
                     <img src="https://loremflickr.com/600/400/food,hunger" class="card-img-top" height="250">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Food For All</h5>
-                        <p class="small text-muted">Distribusi paket makanan bergizi.</p>
-                        <div class="progress mb-3" style="height: 6px;">
-                            <div class="progress-bar bg-warning" style="width: 45%"></div>
-                        </div>
-                        <div class="d-flex justify-content-between small fw-bold">
-                            <span>Raised: $4,500</span>
-                            <span class="text-warning">Goal: $10,000</span>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="fw-bold">Paket Makanan Bergizi</h5>
+                        <p class="small text-muted mb-4">Distribusi makanan untuk keluarga prasejahtera.</p>
+                        
+                        <div class="mt-auto d-flex justify-content-between small fw-bold border-top pt-3">
+                            <span>Terkumpul: Rp 22.500.000</span>
+                            <span class="text-warning">Rp 50.000.000</span>
                         </div>
                     </div>
-                     <div class="card-footer bg-white border-top-0">
-                        <div class="row gx-2">
-                            <div class="col-6"><a href="donation.php" class="btn btn-outline-warning w-100 btn-sm">Donate</a></div>
-                            <div class="col-6"><a href="causes.php" class="btn btn-light w-100 btn-sm border">Read More</a></div>
-                        </div>
+                    <div class="card-footer bg-white border-top-0 pb-4">
+                        <a href="causes.php" class="btn btn-outline-warning w-100">Donasi Sekarang</a>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm h-100">
                     <img src="https://loremflickr.com/600/400/water,people" class="card-img-top" height="250">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Clean Water</h5>
-                        <p class="small text-muted">Pembangunan sumur air bersih desa.</p>
-                        <div class="progress mb-3" style="height: 6px;">
-                            <div class="progress-bar bg-warning" style="width: 85%"></div>
-                        </div>
-                        <div class="d-flex justify-content-between small fw-bold">
-                            <span>Raised: $8,500</span>
-                            <span class="text-warning">Goal: $10,000</span>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="fw-bold">Wakaf Sumur Air Bersih</h5>
+                        <p class="small text-muted mb-4">Pembangunan sumber air bersih untuk desa kekeringan.</p>
+                        
+                        <div class="mt-auto d-flex justify-content-between small fw-bold border-top pt-3">
+                            <span>Terkumpul: Rp 35.000.000</span>
+                            <span class="text-warning">Rp 50.000.000</span>
                         </div>
                     </div>
-                     <div class="card-footer bg-white border-top-0">
-                        <div class="row gx-2">
-                            <div class="col-6"><a href="donation.php" class="btn btn-outline-warning w-100 btn-sm">Donate</a></div>
-                            <div class="col-6"><a href="causes.php" class="btn btn-light w-100 btn-sm border">Read More</a></div>
+                    <div class="card-footer bg-white border-top-0 pb-4">
+                        <a href="causes.php" class="btn btn-outline-warning w-100">Donasi Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-white border-top">
+    <div class="container">
+        <div class="text-center mb-5 section-title">
+            <h2>Berita & Kegiatan Panti</h2>
+            <p class="text-muted">Kabar terbaru mengenai aktivitas anak-anak dan penyaluran bantuan.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://loremflickr.com/600/400/group,people" class="card-img-top" height="250" style="object-fit:cover;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2 text-muted small">
+                            <i class="fas fa-calendar-alt me-2 text-warning"></i> 12 Desember 2024
                         </div>
+                        <h5 class="fw-bold"><a href="#" class="text-dark text-decoration-none">Kunjungan Donatur Akhir Tahun</a></h5>
+                        <p class="text-muted small mt-2">Terima kasih kepada komunitas motor yang telah berkunjung dan berbagi keceriaan bersama adik-adik panti.</p>
+                        <a href="#" class="text-warning fw-bold small text-decoration-none">BACA SELENGKAPNYA <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://loremflickr.com/600/400/study,class" class="card-img-top" height="250" style="object-fit:cover;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2 text-muted small">
+                            <i class="fas fa-calendar-alt me-2 text-warning"></i> 05 Desember 2024
+                        </div>
+                        <h5 class="fw-bold"><a href="#" class="text-dark text-decoration-none">Kelas Belajar Bahasa Inggris</a></h5>
+                        <p class="text-muted small mt-2">Kegiatan rutin setiap minggu sore, anak-anak belajar bahasa Inggris bersama kakak relawan mahasiswa.</p>
+                        <a href="#" class="text-warning fw-bold small text-decoration-none">BACA SELENGKAPNYA <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://loremflickr.com/600/400/box,donation" class="card-img-top" height="250" style="object-fit:cover;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2 text-muted small">
+                            <i class="fas fa-calendar-alt me-2 text-warning"></i> 28 November 2024
+                        </div>
+                        <h5 class="fw-bold"><a href="#" class="text-dark text-decoration-none">Penyaluran Sembako Tahap 2</a></h5>
+                        <p class="text-muted small mt-2">Alhamdulillah, bantuan sembako dari para donatur telah kami terima dan simpan di gudang logistik.</p>
+                        <a href="#" class="text-warning fw-bold small text-decoration-none">BACA SELENGKAPNYA <i class="fas fa-arrow-right ms-1"></i></a>
                     </div>
                 </div>
             </div>

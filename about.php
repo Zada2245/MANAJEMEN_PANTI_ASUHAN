@@ -63,28 +63,74 @@
     </div>
 </section>
 
-<section class="py-5">
+<section class="py-5 bg-light">
     <div class="container text-center">
         <h6 class="text-warning fw-bold text-uppercase">Our Team</h6>
         <h2 class="fw-bold mb-5">A Strong and Devoted Team</h2>
-        <div class="row">
+        
+        <div class="row justify-content-center">
+            
             <div class="col-md-4 mb-4">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded shadow mb-3" width="200">
-                <h5 class="fw-bold">Sarah Johnson</h5>
-                <p class="text-muted small">Founder</p>
+                <div class="card border-0 shadow-sm h-100 py-3">
+                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="img-fluid" alt="Ayu Alizza">
+                    </div>
+                    <h5 class="fw-bold">Ayu Alizza</h5>
+                    <p class="text-muted small">Founder</p>
+                </div>
             </div>
+
             <div class="col-md-4 mb-4">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded shadow mb-3" width="200">
-                <h5 class="fw-bold">Michael Doe</h5>
-                <p class="text-muted small">Volunteer Lead</p>
+                <div class="card border-0 shadow-sm h-100 py-3">
+                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="img-fluid" alt="Muhammad Raya">
+                    </div>
+                    <h5 class="fw-bold">Muhammad Raya Pedang Putra</h5>
+                    <p class="text-muted small">Volunteer Lead</p>
+                </div>
             </div>
+
             <div class="col-md-4 mb-4">
-                <img src="https://randomuser.me/api/portraits/men/85.jpg" class="rounded shadow mb-3" width="200">
-                <h5 class="fw-bold">James Smith</h5>
-                <p class="text-muted small">Manager</p>
+                <div class="card border-0 shadow-sm h-100 py-3">
+                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
+                        <img src="https://randomuser.me/api/portraits/men/85.jpg" class="img-fluid" alt="Oktriadi">
+                    </div>
+                    <h5 class="fw-bold">Oktriadi Ramadhanu</h5>
+                    <p class="text-muted small">Manager</p>
+                </div>
             </div>
-        </div>
-    </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm h-100 py-3">
+                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
+                        <img src="https://randomuser.me/api/portraits/men/11.jpg" class="img-fluid" alt="Muhammad Rafy">
+                    </div>
+                    <h5 class="fw-bold">Muhammad Rafy Rahmawan</h5>
+                    <p class="text-muted small">Manager</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm h-100 py-3">
+                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
+                        <img src="https://randomuser.me/api/portraits/men/12.jpg" class="img-fluid" alt="Muhammad Akhyar">
+                    </div>
+                    <h5 class="fw-bold">Muhammad Akhyar Putra Pasha</h5>
+                    <p class="text-muted small">Manager</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm h-100 py-3">
+                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
+                        <img src="https://randomuser.me/api/portraits/men/13.jpg" class="img-fluid" alt="Adriano">
+                    </div>
+                    <h5 class="fw-bold">Adriano Muhammad Rafi</h5>
+                    <p class="text-muted small">Manager</p>
+                </div>
+            </div>
+
+        </div> </div>
 </section>
 
 <?php include 'footer.php'; ?>

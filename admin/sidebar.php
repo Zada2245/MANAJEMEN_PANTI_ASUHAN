@@ -30,7 +30,11 @@
                     <i class="fas fa-images"></i> Gallery
                 </a>
             </li>
-            
+            <li>
+                <a href="data-anak.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'data-anak.php' ? 'active' : ''; ?>">
+                    <i class="fas fa-child"></i> Data Anak Asuh
+                </a>
+            </li>
             <li style="margin-top: 50px;">
                 <a href="#">
                     <i class="fas fa-cog"></i> Settings

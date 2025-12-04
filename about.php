@@ -63,7 +63,7 @@
     </div>
 </section>
 
-<section class="py-5 bg-light">
+<section class="py-5">
     <div class="container text-center">
         <h6 class="text-warning fw-bold text-uppercase">Our Team</h6>
         <h2 class="fw-bold mb-5">A Strong and Devoted Team</h2>
@@ -72,8 +72,8 @@
             
             <div class="col-md-4 mb-4">
                 <div class="card border-0 shadow-sm h-100 py-3">
-                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="img-fluid" alt="Ayu Alizza">
+                    <div class="mx-auto overflow-hidden mb-3 shadow-sm rounded" style="width: 150px; height: 150px;">
+                        <img src="images/lizza.jpg" class="img-fluid" alt="Ayu Alizza" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://randomuser.me/api/portraits/women/44.jpg';">
                     </div>
                     <h5 class="fw-bold">Ayu Alizza</h5>
                     <p class="text-muted small">Founder</p>
@@ -82,8 +82,8 @@
 
             <div class="col-md-4 mb-4">
                 <div class="card border-0 shadow-sm h-100 py-3">
-                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="img-fluid" alt="Muhammad Raya">
+                    <div class="mx-auto overflow-hidden mb-3 shadow-sm rounded" style="width: 150px; height: 150px;">
+                        <img src="images/raya.jpg" class="img-fluid" alt="Muhammad Raya" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <h5 class="fw-bold">Muhammad Raya Pedang Putra</h5>
                     <p class="text-muted small">Volunteer Lead</p>
@@ -92,8 +92,8 @@
 
             <div class="col-md-4 mb-4">
                 <div class="card border-0 shadow-sm h-100 py-3">
-                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
-                        <img src="https://randomuser.me/api/portraits/men/85.jpg" class="img-fluid" alt="Oktriadi">
+                    <div class="mx-auto overflow-hidden mb-3 shadow-sm rounded" style="width: 150px; height: 150px;">
+                        <img src="images/danu.jpg" class="img-fluid" alt="Oktriadi" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <h5 class="fw-bold">Oktriadi Ramadhanu</h5>
                     <p class="text-muted small">Manager</p>
@@ -102,8 +102,8 @@
 
             <div class="col-md-4 mb-4">
                 <div class="card border-0 shadow-sm h-100 py-3">
-                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
-                        <img src="https://randomuser.me/api/portraits/men/11.jpg" class="img-fluid" alt="Muhammad Rafy">
+                    <div class="mx-auto overflow-hidden mb-3 shadow-sm rounded" style="width: 150px; height: 150px;">
+                        <img src="images/rafi.jpg" class="img-fluid" alt="Muhammad Rafy" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <h5 class="fw-bold">Muhammad Rafy Rahmawan</h5>
                     <p class="text-muted small">Manager</p>
@@ -112,8 +112,8 @@
 
             <div class="col-md-4 mb-4">
                 <div class="card border-0 shadow-sm h-100 py-3">
-                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
-                        <img src="https://randomuser.me/api/portraits/men/12.jpg" class="img-fluid" alt="Muhammad Akhyar">
+                    <div class="mx-auto overflow-hidden mb-3 shadow-sm rounded" style="width: 150px; height: 150px;">
+                        <img src="https://randomuser.me/api/portraits/men/12.jpg" class="img-fluid" alt="Muhammad Akhyar" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <h5 class="fw-bold">Muhammad Akhyar Putra Pasha</h5>
                     <p class="text-muted small">Manager</p>
@@ -122,15 +122,16 @@
 
             <div class="col-md-4 mb-4">
                 <div class="card border-0 shadow-sm h-100 py-3">
-                    <div class="mx-auto rounded-circle overflow-hidden mb-3" style="width: 150px; height: 150px;">
-                        <img src="https://randomuser.me/api/portraits/men/13.jpg" class="img-fluid" alt="Adriano">
+                    <div class="mx-auto overflow-hidden mb-3 shadow-sm rounded" style="width: 150px; height: 150px;">
+                        <img src="images/ano.jpg" class="img-fluid" alt="Adriano" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <h5 class="fw-bold">Adriano Muhammad Rafi</h5>
                     <p class="text-muted small">Manager</p>
                 </div>
             </div>
 
-        </div> </div>
+        </div> 
+    </div>
 </section>
 
 <?php include 'footer.php'; ?>

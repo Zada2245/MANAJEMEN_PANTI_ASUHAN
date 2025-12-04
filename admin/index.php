@@ -1,4 +1,10 @@
 <?php 
+// PASTIKAN ADA SESSION START DI PALING ATAS
+session_start();
+if($_SESSION['status'] != "login"){
+    header("location:login.php");
+}
+
 // Koneksi Database
 include '../koneksi.php'; 
 
@@ -12,7 +18,12 @@ $q_donatur = mysqli_query($koneksi, "SELECT COUNT(*) as jumlah FROM donasi");
 $d_donatur = mysqli_fetch_assoc($q_donatur);
 $jml_donatur = $d_donatur['jumlah'] ?? 0;
 
-// 3. DATA UNTUK GRAFIK (7 Hari Terakhir)
+// 3. HITUNG JUMLAH RELAWAN (Total Volunter) - BARU DITAMBAHKAN
+$q_relawan = mysqli_query($koneksi, "SELECT COUNT(*) as jumlah FROM relawan");
+$d_relawan = mysqli_fetch_assoc($q_relawan);
+$jml_relawan = $d_relawan['jumlah'] ?? 0;
+
+// 4. DATA UNTUK GRAFIK (7 Hari Terakhir)
 $q_grafik = mysqli_query($koneksi, "
     SELECT DATE_FORMAT(tanggal, '%d %M') as tgl, SUM(nominal) as total 
     FROM donasi 
@@ -27,7 +38,7 @@ while($g = mysqli_fetch_assoc($q_grafik)){
     $data_chart[] = $g['total'];
 }
 
-// 4. DATA TRANSAKSI TERBARU (5 Data)
+// 5. DATA TRANSAKSI TERBARU (5 Data)
 $q_recent = mysqli_query($koneksi, "SELECT * FROM donasi ORDER BY id DESC LIMIT 5");
 ?>
 
@@ -108,7 +119,8 @@ $q_recent = mysqli_query($koneksi, "SELECT * FROM donasi ORDER BY id DESC LIMIT 
                 <div class="stat-card d-flex align-items-center justify-content-between">
                     <div>
                         <small class="text-muted">Total Volunteers</small>
-                        <h3 class="fw-bold my-1">10</h3>
+                        <!-- BAGIAN INI SUDAH DIUBAH MENJADI DINAMIS -->
+                        <h3 class="fw-bold my-1"><?php echo $jml_relawan; ?></h3>
                         <small class="text-muted">Relawan</small>
                     </div>
                     <div class="stat-icon bg-icon-success">

@@ -1,7 +1,7 @@
 <?php 
 include 'header.php'; 
 
-// Koneksi Database
+
 $koneksi = mysqli_connect("localhost", "root", "", "db_panti");
 ?>
 
@@ -27,7 +27,6 @@ $koneksi = mysqli_connect("localhost", "root", "", "db_panti");
             
             if(mysqli_num_rows($query_anak) > 0) {
                 while($anak = mysqli_fetch_assoc($query_anak)) { 
-                    // Hitung Umur Otomatis
                     $lahir = new DateTime($anak['tgl_lahir']);
                     $hari_ini = new DateTime('today');
                     $umur = $lahir->diff($hari_ini)->y;
